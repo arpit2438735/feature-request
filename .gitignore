@@ -1,0 +1,8 @@
+.idea/
+virtualenv/
+
+*.egg-info
+*.egg
+
+build/
+dist/
