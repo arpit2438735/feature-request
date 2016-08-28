@@ -1,0 +1,8 @@
+#CONFIG
+DEBUG: True
+VERBOSE: False
+SQLALCHEMY_TRACK_MODIFICATIONS: False
+
+#FLASK
+SECRET_KEY: 'development key'
+SECURITY_PASSWORD_SALT: 'development password salt'
