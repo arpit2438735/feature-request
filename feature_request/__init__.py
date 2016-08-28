@@ -2,11 +2,12 @@ from flask import Flask
 from config import configure
 from models import db
 
-def init_app():
+
+def init_app(environment=None):
     app = Flask(__name__)
 
     print "Configuring app"
-    app = configure(app)
+    app = configure(app, environment)
 
     # DB Initilization
     db.init_app(app)

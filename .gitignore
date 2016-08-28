@@ -6,3 +6,10 @@ virtualenv/
 
 build/
 dist/
+.eggs
+
+# Python cache
+__pycache__/
+*.pyc
+.eggs/
+tmp/

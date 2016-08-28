@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
-class ModelBase():
+class ModelBase:
     id = db.Column(db.String(22), primary_key=True, default=shortuuid.uuid)
     created_at = db.Column(db.DateTime(), default=datetime.utcnow)
 

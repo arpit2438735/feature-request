@@ -1,0 +1,6 @@
+TESTING: True
+
+DEBUG: False
+VERBOSE: False
+
+SQLALCHEMY_DATABASE_URI: 'sqlite:////tmp/test.db'
