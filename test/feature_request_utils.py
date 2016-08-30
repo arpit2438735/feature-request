@@ -30,7 +30,7 @@ class FeatureRequestUtils:
                           description='Client want to have oauth base login',
                           client=client_1.id,
                           client_priority=1,
-                          target_date=datetime.datetime.now(),
+                          target_date='2016-12-01',
                           product_area=product_1.id)
         request.insert(request)
 
@@ -38,7 +38,7 @@ class FeatureRequestUtils:
                           description='Client want to have bootstrap framework in user module',
                           client=client_2.id,
                           client_priority=2,
-                          target_date=datetime.datetime.now(),
+                          target_date='2016-11-12',
                           product_area=product_2.id)
         request.insert(request)
 
@@ -46,7 +46,7 @@ class FeatureRequestUtils:
                           description='Client want to mail where he/she can send direct mail to them from own domain',
                           client=client_1.id,
                           client_priority=2,
-                          target_date=datetime.datetime.now(),
+                          target_date='2017-01-01',
                           product_area=product_1.id)
         request.save()
 

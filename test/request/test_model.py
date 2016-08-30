@@ -33,7 +33,7 @@ class TestRequest(UnitTestBase, unittest.TestCase):
         client.create(client)
 
         request = Request(title='test', description='this is test', client=client.id,
-                          client_priority=1, target_date=datetime.datetime.now(), product_area=product.id)
+                          client_priority=1, target_date='2017-03-12', product_area=product.id)
         request.create(request)
 
         find_all_request = Request.query.filter().all()
