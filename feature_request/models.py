@@ -19,7 +19,11 @@ class ModelBase:
         return db.session.commit()
 
     @staticmethod
-    def update():
+    def insert(resource):
+        db.session.add(resource)
+
+    @staticmethod
+    def save():
         return db.session.commit()
 
     @staticmethod
@@ -34,7 +38,3 @@ class ModelBase:
     @classmethod
     def find_by(cls, **kwargs):
         return cls.query.filter_by(**kwargs).first()
-
-    @classmethod
-    def find_all(cls, **kwargs):
-        return cls.query.filter_by(**kwargs).all()
