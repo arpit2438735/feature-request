@@ -6,3 +6,5 @@ SQLALCHEMY_TRACK_MODIFICATIONS: False
 #FLASK
 SECRET_KEY: 'development key'
 SECURITY_PASSWORD_SALT: 'development password salt'
+
+WEBPACK_MANIFEST_PATH: './build/manifest.json'

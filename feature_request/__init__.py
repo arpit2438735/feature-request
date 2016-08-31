@@ -1,6 +1,9 @@
 from flask import Flask
+from flask_webpack import Webpack
 from config import configure
 from models import db
+
+webpack = Webpack()
 
 
 def init_app(environment=None):
@@ -12,6 +15,8 @@ def init_app(environment=None):
     register_blueprints(app)
     # DB Initilization
     db.init_app(app)
+    # webpack intialization
+    webpack.init_app(app)
 
     return app
 

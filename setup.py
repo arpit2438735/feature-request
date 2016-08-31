@@ -10,7 +10,9 @@ requirements = [
     'Flask-Script==2.0.5',
 
     'PyYaml==3.11',
-    'shortuuid==0.4.3'
+    'shortuuid==0.4.3',
+
+    "Flask-Webpack>=0.0.7"
 ]
 
 setup(
