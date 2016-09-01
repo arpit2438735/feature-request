@@ -37,7 +37,7 @@ module.exports = {
             {
                 test: /\.less$/i,
                 exclude: /node_modules/,
-                loader: ExtractTextPlugin.extract(['css!less'])
+                loader: ExtractTextPlugin.extract('css!less')
             }
         ]
     },

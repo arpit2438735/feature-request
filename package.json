@@ -1,16 +1,19 @@
 {
   "scripts": {
     "start": "node_modules/.bin/webpack-dev-server --progress --colors --port 2992 --content-base feature_request/build/public",
-    "build": "node_modules/.bin/webpack --progress --profile --colors"
+    "build": "if cd feature_request/build/; then cd ../../ && node_modules/.bin/webpack --progress --profile --colors; else mkdir -p feature_request/build/ && node_modules/.bin/webpack --progress --profile --colors; fi"
   },
   "dependencies": {
-    "webpack": "^1.13.2",
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
-    "webpack-dev-server": "^1.15.0",
     "clean-webpack-plugin": "^0.1.10",
+    "css-loader": "^0.24.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "less": "^2.7.1",
-    "less-loader": "^2.2.3"
+    "less-loader": "^2.2.3",
+    "manifest-revision-webpack-plugin": "^0.3.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.0"
   },
   "devDependencies": {
     "angular": "^1.5.8"
