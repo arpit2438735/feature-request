@@ -7,4 +7,4 @@ install:
   - python setup.py install
   - pip install coveralls
 script:
-  - python manage.py coverage
+  - python tests.py coverage
