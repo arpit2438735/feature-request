@@ -25,13 +25,13 @@ class Product(db.Model, ModelBase):
 
 
 class Request(db.Model, ModelBase):
-    title = db.Column(db.String(50), nullable=False)
-    description = db.Column(db.String(300), nullable=False)
-    client = db.Column(db.Integer, db.ForeignKey('client.id'))
+    title = db.Column(db.String(300), nullable=False)
+    description = db.Column(db.String(1000), nullable=False)
+    client = db.Column(db.String, db.ForeignKey('client.id'))
     client_priority = db.Column(db.Integer, nullable=False)
     target_date = db.Column(db.Date, default=None)
     ticket_url = db.Column(db.String(300), default=shortuuid.ShortUUID().random(length=10))
-    product_area = db.Column(db.Integer, db.ForeignKey('product.id'))
+    product_area = db.Column(db.String, db.ForeignKey('product.id'))
 
     def __init__(self, title, description, client, client_priority, target_date, product_area):
         self.title = title

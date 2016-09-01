@@ -8,3 +8,9 @@ SECRET_KEY: 'development key'
 SECURITY_PASSWORD_SALT: 'development password salt'
 
 WEBPACK_MANIFEST_PATH: './build/manifest.json'
+
+#Database Details
+DB_USER: 'optimicer'
+DB_PASS: ''
+DB_ADDR: 'localhost'
+DB_NAME: 'feature_request'
