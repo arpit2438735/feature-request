@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_webpack import Webpack
 from config import configure
 from models import db
@@ -18,6 +18,10 @@ def init_app(environment=None):
     # webpack intialization
     webpack.init_app(app)
 
+    @app.route('/')
+    def index():
+        return render_template('index.html')
+
     return app
 
 
@@ -26,7 +30,6 @@ def register_blueprints(app):
 
     print "Register Blueprints"
     app.register_blueprint(request_api, url_prefix='/api/feature-request')
-
 
 def run_app(app):
     app.run()

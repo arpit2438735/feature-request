@@ -13,50 +13,52 @@ module.exports = {
         ],
         app_css: [
             root + "/styles/style.less"
+        ],
+        vendor_js: [
+            './node_modules/angular/angular.js'
         ]
     },
     output: {
         path: "./feature_request/build/public",
         publicPath: "http://localhost:2992/assets/",
-        filename: "[name].[chunkhash].js",
-        chunkFilename: "[id].[chunkhash].chunk"
+        filename: "[name].js",
+        chunkFilename: "[id].chunk"
     },
     resolve: {
         extensions: ["", ".js", ".less"]
     },
     module: {
         loaders: [
+
             {
                 test: /\.js$/i,
                 exclude: /(node_modules|assets\/styles)/,
-                loader: "babel",
-                query: {
-                    cacheDirectory: true
-                }
+                loader: "ng-annotate!babel"
             },
             {
                 test: /\.less$/i,
                 exclude: /node_modules/,
                 loader: ExtractTextPlugin.extract('css!less')
+            },
+            {
+                test: /\.html$/,
+                loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, './assets/scripts')) + '/!html'
             }
         ]
     },
     plugins: [
         new webpack.NoErrorsPlugin(),
-        new CleanWebpackPlugin(['public'], {
-            root: process.cwd() + '/feature_request/build'
-        }),
-        new ExtractTextPlugin("[name].[chunkhash].css"),
+        new ExtractTextPlugin("[name].css"),
         new ManifestRevisionPlugin(path.join("feature_request", "build", "manifest.json"), {
             rootAssetPath: root,
             ignorePaths: ["/styles", "/scripts"]
         }),
-        new webpack.optimize.UglifyJsPlugin(),
         new webpack.optimize.DedupePlugin(),
         new webpack.DefinePlugin({
             "process.env": {
                 NODE_ENV: '"production"'
             }
         })
-    ]
+    ],
+    devtool: "inline-source-map"
 };
