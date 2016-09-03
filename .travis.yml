@@ -8,3 +8,4 @@ install:
   - pip install coveralls
 script:
   - python tests.py coverage
+  - npm run test

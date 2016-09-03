@@ -28,6 +28,16 @@ module.exports = {
         extensions: ["", ".js", ".less"]
     },
     module: {
+        preLoaders: [
+            {
+                test: /\.js$/,
+                exclude: [
+                    /node_modules/,
+                    /\.spec\.js$/
+                ],
+                loader: 'isparta-loader'
+            }
+        ],
         loaders: [
 
             {

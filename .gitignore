@@ -14,3 +14,4 @@ __pycache__/
 .eggs/
 tmp/
 node_modules/
+coverage
