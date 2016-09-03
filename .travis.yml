@@ -6,6 +6,8 @@ node_js:
 before_install:
   - python setup.py install
   - pip install coveralls
+  - nvm install 6
+  - nvm use 6
   - npm install
   - npm run build
 script:
