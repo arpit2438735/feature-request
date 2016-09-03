@@ -44,6 +44,9 @@ module.exports = function karmaConfig (config) {
         {type: 'html'}
       ]
     },
+    node: {
+      fs: 'empty'
+    },
 
     webpack: require('./webpack.config'),
 
