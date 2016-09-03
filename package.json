@@ -30,9 +30,11 @@
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "^1.8.0",
     "isparta-loader": "^2.0.0",
-    "angular-mocks": "^1.5.8"
+    "angular-mocks": "^1.5.8",
+    "ng-annotate": "^1.2.1"
   },
   "devDependencies": {
-    "angular": "^1.5.8"
+    "angular": "^1.5.8",
+    "ui-bootstrap": "^0.1.3"
   }
 }
