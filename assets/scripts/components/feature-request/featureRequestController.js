@@ -2,12 +2,10 @@ import templateUrl from './new-feature-request.html';
 
 class featureRequestController {
     constructor(FeatureRequestApiService, $uibModal) {
-        this.$onInit = () => {
-            this.modal = $uibModal;
-            FeatureRequestApiService.getFeatureRequestList().then(() => {
-                this.featureRequestList = FeatureRequestApiService.model;
-            });
-        };
+        this.modal = $uibModal;
+        FeatureRequestApiService.getFeatureRequestList().then(() => {
+            this.featureRequestList = FeatureRequestApiService.model;
+        });
     }
 
     openRequestFormModal() {
