@@ -11,7 +11,7 @@ class FeatureRequestApiService {
     getFeatureRequestList() {
         this.model.length = 0;
         return this.$http.get('/api/feature-request/').then((response) =>{
-                this._model.push.apply(this.model, response);
+                this._model.push.apply(this._model, response.data.feature_requests);
             });
     }
 

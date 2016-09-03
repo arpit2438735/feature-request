@@ -1,7 +1,7 @@
-from flask import Blueprint, jsonify, request, abort, make_response
+from flask import Blueprint, jsonify, request
 import json
 
-from model import Request, Client, Product
+from model import Request
 
 request_api = Blueprint('request_api', __name__)
 

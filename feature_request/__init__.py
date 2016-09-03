@@ -27,9 +27,12 @@ def init_app(environment=None):
 
 def register_blueprints(app):
     from feature_request.request.api import request_api
-
+    from feature_request.request.client import client
+    from feature_request.request.product import product
     print "Register Blueprints"
     app.register_blueprint(request_api, url_prefix='/api/feature-request')
+    app.register_blueprint(client, url_prefix='/api/client')
+    app.register_blueprint(product, url_prefix='/api/product')
 
 def run_app(app):
     app.run()

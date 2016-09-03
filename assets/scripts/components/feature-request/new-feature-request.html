@@ -1,0 +1,23 @@
+<div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Request New Feature</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <form novalidate>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control" ng-model="featureRequest.title" required/>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea ng-model="featureRequest.description" required>
+                </div>
+                <div class="form-group">
+                    <label>Client</label>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Save</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>
+</div>

@@ -1,11 +1,23 @@
+import templateUrl from './new-feature-request.html';
+
 class featureRequestController {
-    constructor(FeatureRequestApiService) {
-        FeatureRequestApiService.getFeatureRequestList().then(() => {
-            this.featureRequestList = FeatureRequestApiService.model;
+    constructor(FeatureRequestApiService, $uibModal) {
+        this.$onInit = () => {
+            this.modal = $uibModal;
+            FeatureRequestApiService.getFeatureRequestList().then(() => {
+                this.featureRequestList = FeatureRequestApiService.model;
+            });
+        };
+    }
+
+    openRequestFormModal() {
+        this.modal.open({
+            templateUrl,
+            controllerAs: 'ctrl'
         });
     }
 }
 
-featureRequestController.$inject = ['FeatureRequestApiService'];
+featureRequestController.$inject = ['FeatureRequestApiService', '$uibModal'];
 
 export default featureRequestController;

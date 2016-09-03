@@ -15,7 +15,9 @@ module.exports = {
             root + "/styles/style.less"
         ],
         vendor_js: [
-            './node_modules/angular/angular.js'
+            './node_modules/angular/angular.js',
+            './node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js',
+            './node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js'
         ]
     },
     output: {
@@ -53,6 +55,9 @@ module.exports = {
             {
                 test: /\.html$/,
                 loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, './assets/scripts')) + '/!html'
+            },
+            {   test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                loader: 'url-loader?limit=100000'
             }
         ]
     },

@@ -10,6 +10,9 @@ class Client(db.Model, ModelBase):
     def __init__(self, name):
         self.name = name
 
+    def to_json(self, client):
+        return {'name': client.name, 'id': client.id}
+
     def __repr__(self):
         return '<Client %r>' % self.name
 
@@ -19,6 +22,9 @@ class Product(db.Model, ModelBase):
 
     def __init__(self, name):
         self.name = name
+
+    def to_json(self, product):
+        return {'name': product.name, 'id': product.id}
 
     def __repr__(self):
         return '<Product %r>' % self.name

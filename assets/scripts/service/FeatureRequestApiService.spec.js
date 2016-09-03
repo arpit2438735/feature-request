@@ -41,7 +41,7 @@ describe('FeatureRequestService', () => {
 
         describe('on get list of feature list from backend', () => {
             beforeEach(() => {
-                featureRequestListCallback([{'title': 'foo', 'description': 'bar'}]);
+                featureRequestListCallback({'data': {'feature_requests': [{'title': 'foo', 'description': 'bar'}]}});
             });
 
             it('should add value in the same model', () => {

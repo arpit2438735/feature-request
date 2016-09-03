@@ -6,7 +6,8 @@ import FeatureRequestApiService from "../../service/FeatureRequestApiService";
 
 const featureRequestDetails = {
     templateUrl,
-    controller: 'featureRequestController'
+    controller: 'featureRequestController',
+    controllerAs: 'ctrl'
 };
 
 const component = angular.module('feature-request.components', [])

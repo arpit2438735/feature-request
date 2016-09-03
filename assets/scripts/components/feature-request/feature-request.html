@@ -1,1 +1,31 @@
-<h1>Feature Request</h1>
+<nav class="navbar navbar-default feature-request-navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <h2>FEATURE REQUEST</h2>
+        </div>
+        <div class="navbar-text navbar-right">
+            <button type="button" class="btn btn-primary btn-request" ng-click="ctrl.openRequestFormModal()">Request Feature</button>
+        </div>
+    </div>
+</nav>
+
+<table class="table table-striped">
+    <thead>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Client Name</th>
+        <th>Priority</th>
+        <th>Target Date</th>
+        <th>Product Area</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="feature in ctrl.featureRequestList">
+            <td> {{ feature.title}} </td>
+            <td> {{ feature.description}} </td>
+            <td> {{ feature.client_name}}</td>
+            <td> {{ feature.client_priority}}</td>
+            <td> {{ feature.target_date }} </td>
+            <td> {{ feature.product_area}} </td>
+        </tr>
+    </tbody>
+</table>
