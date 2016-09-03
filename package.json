@@ -31,7 +31,8 @@
     "karma-webpack": "^1.8.0",
     "isparta-loader": "^2.0.0",
     "angular-mocks": "^1.5.8",
-    "ng-annotate": "^1.2.1"
+    "ng-annotate": "^1.2.1",
+    "ng-annotate-loader": "^0.1.1"
   },
   "devDependencies": {
     "angular": "^1.5.8",
