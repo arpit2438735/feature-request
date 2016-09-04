@@ -26,6 +26,7 @@ def post():
                               feature_request_response['target_date'], feature_request_response['product_id'])
 
     feature_request.insert(feature_request)
+    feature_request.save()
 
     return jsonify({
             'status': 'success',

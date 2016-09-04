@@ -51,7 +51,7 @@ describe('FeatureRequestService', () => {
     });
 
     describe('on calling of getFeatureRequestList', function () {
-            const newFeautreRequest = {'title': 'newfoo', 'description': 'newbar'};
+            const newFeautreRequest = {data: {feature_request: {'title': 'newfoo', 'description': 'newbar'}}};
             beforeEach(() => {
                 service.addNewFeatureRequest(newFeautreRequest);
             });

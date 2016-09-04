@@ -48,5 +48,7 @@ class FeatureRequestUtils:
                           client_priority=2,
                           target_date='2017-01-01',
                           product_area=product_1.id)
+        request.insert(request)
+
         request.save()
 

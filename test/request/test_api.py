@@ -66,7 +66,7 @@ class TestRequestAPI(IntegrationTestBase, unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
         response_data = json.loads(response.data)
-        self.assertEqual(len(response_data['feature_requests']), 2)
+        self.assertEqual(len(response_data['feature_requests']), 3)
         self.assertEqual(response_data['feature_requests'][0]['client_name'], expected_data['feature_requests'][0]['client_name'])
         self.assertEqual(response_data['feature_requests'][1]['client_name'], expected_data['feature_requests'][1]['client_name'])
         self.assertEqual(response_data['feature_requests'][0]['client_priority'], expected_data['feature_requests'][0]['client_priority'])
@@ -104,6 +104,34 @@ class TestRequestAPI(IntegrationTestBase, unittest.TestCase):
 
         self.assertEqual(response_data, expected)
         self.assertEqual(response.status_code, 201)
+
+    def test_post_getting_saved(self):
+        FeatureRequestUtils.create_request()
+        client = Client.find_by(name='ClientA')
+        product = Product.find_by(name='Billing')
+
+        feature_request = {
+            'title': 'Automate the deployment to AWS Server',
+            'description': 'As a client I can deploy the latest change to AWS Server for demo',
+            "client_id": client.id,
+            "client_priority": 1,
+            "product_id": product.id,
+            "target_date": '2017-09-20'
+        }
+
+        response = self.app.post(
+            '/api/feature-request/',
+            data=json.dumps(feature_request),
+            content_type='application/json'
+        )
+
+        response = self.app.get('/api/feature-request/')
+        response_data = json.loads(response.data)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response_data["feature_requests"]), 4)
+
+
 
     def test_put_request_for_id_not_present(self):
         FeatureRequestUtils.create_request()

@@ -1,9 +1,9 @@
 import featureRequestController from  "./featureRequestController";
 
 let controller, FeatureRequestApiService, featureRequestListCallback,
-    callback, $http, $rootScope, clientCallback, productCallback;
+    callback, $http, $rootScope, clientCallback, productCallback, modal;
 describe('featureRequestController', () => {
-    beforeEach(inject((_$rootScope_) => {
+    beforeEach(inject((_$rootScope_, $filter) => {
         $rootScope = _$rootScope_;
         FeatureRequestApiService = {
             model: [],
@@ -16,13 +16,18 @@ describe('featureRequestController', () => {
                     }
                 };
             }),
+            addNewFeatureRequest: jasmine.createSpy('FeatureRequestApiService.addNewFeatureRequest').and.returnValue({then:angular.noop})
         };
 
         $http = {
             get: jasmine.createSpy('$http.get').and.returnValue({then: angular.noop})
         };
 
-        controller = new featureRequestController(FeatureRequestApiService, null, $http);
+        modal = {
+            open: jasmine.createSpy('modal.open').and.returnValue({dismiss: jasmine.createSpy('modalInstane.dismiss')})
+        };
+
+        controller = new featureRequestController(FeatureRequestApiService, modal, $http, {}, $filter);
     }));
 
     it('should call FeatureRequestApiService.getFeatureRequestList', () => {
@@ -35,6 +40,45 @@ describe('featureRequestController', () => {
 
     it('should call get request for product', () => {
        expect($http.get).toHaveBeenCalledWith('/api/product/');
+    });
+
+    describe('on click on new feature request', () => {
+        beforeEach(() => {
+            controller.openRequestFormModal();
+        });
+
+        it('should call open for modal', () => {
+           expect(modal.open).toHaveBeenCalledWith({templateUrl: 'components/feature-request/new-feature-request.html', controllerAs: 'ctrl', scope: {}});
+        });
+
+        describe('on closing of modal', () => {
+            beforeEach(()=>{
+                controller.closeModal();
+            });
+
+            it('should call dimiss method of modal instance', ()=> {
+                expect(controller.modalInstance.dismiss).toHaveBeenCalled();
+            });
+        });
+
+        describe('on adding of new request from modal', ()=> {
+            beforeEach(()=> {
+                let form = {'$valid': true};
+                let newfeatureRequest = {
+                    title: 'some',
+                    target_date: new Date('2017','01','02')
+                };
+                controller.saveNewFeature(form, newfeatureRequest);
+            });
+
+            it('should call addNewFeatureRequest for FeatureRequestApiService', ()=> {
+               expect(FeatureRequestApiService.addNewFeatureRequest).toHaveBeenCalledWith({ title: 'some', target_date: '2017-02-02' });
+            });
+
+            it('should call dimiss method of modal instance', ()=> {
+                expect(controller.modalInstance.dismiss).toHaveBeenCalled();
+            });
+        });
     });
 
     describe('on call of client and product api\'s', () => {

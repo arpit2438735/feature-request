@@ -17,7 +17,7 @@ class FeatureRequestApiService {
 
     addNewFeatureRequest(data) {
         return this.$http.post('/api/feature-request/', data).then((response) => {
-               this._model.push(response);
+               this._model.push(response.data.feature_request);
             });
     }
 
