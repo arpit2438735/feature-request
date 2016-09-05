@@ -5,6 +5,7 @@
 - Python 2.x
 - Flask
 - SQLAlchemy
+- AngularJs
 
 ##Installation
 
@@ -20,6 +21,10 @@
 
 # Step 4: Setup project
 > python setup.py
+# Step 5: Install node packages(make sure you have higer node version>4)
+> npm install
+# Step 6: Build css and js filder
+> npm run build && npm start
 ``` 
 
 ##Run
@@ -31,8 +36,9 @@
 
 - To run test cases and coverage
 ```
-    python manage.py test
-    python manage.py coverage
+    python tests.py test
+    python tests.py coverage
+    npm run test
 ```
 
 [travis-image]: https://travis-ci.org/arpit2438735/feature-request.svg?branch=master
