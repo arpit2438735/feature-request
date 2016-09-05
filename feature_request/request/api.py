@@ -8,7 +8,7 @@ request_api = Blueprint('request_api', __name__)
 
 @request_api.route('/', methods=["GET"])
 def get():
-    requests = Request.query.all()
+    requests = Request.query.order_by(Request.client, Request.client_priority).limit(50).all()
 
     feature_requests = []
 
