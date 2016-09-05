@@ -26,6 +26,7 @@ class FeatureRequestApiService {
                 this.model.forEach((feature, index) => {
                     if(feature.id === featureId) {
                         this.model[index] = response.data.feature_request;
+                        return;
                     }
                 });
             });

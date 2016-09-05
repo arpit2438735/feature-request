@@ -17,15 +17,22 @@
         <th>Priority</th>
         <th>Target Date</th>
         <th>Product Area</th>
+        <th>Actions</th>
     </thead>
     <tbody>
-        <tr ng-repeat="feature in ctrl.featureRequestList">
+        <tr ng-repeat="feature in ctrl.featureRequestList track by $index">
             <td> {{ feature.title}} </td>
             <td> {{ feature.description}} </td>
             <td> {{ feature.client_name}}</td>
             <td> {{ feature.client_priority}}</td>
             <td> {{ feature.target_date }} </td>
             <td> {{ feature.product_area}} </td>
+            <td>
+                <button type="button" class="btn btn-link" aria-label="Left Align" title="Edit"
+                                                ng-click="ctrl.openModelWithCurrentFeatureRequestValue($index)">
+                    <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </button>
+            </td>
         </tr>
     </tbody>
 </table>

@@ -16,7 +16,8 @@ describe('featureRequestController', () => {
                     }
                 };
             }),
-            addNewFeatureRequest: jasmine.createSpy('FeatureRequestApiService.addNewFeatureRequest').and.returnValue({then:angular.noop})
+            addNewFeatureRequest: jasmine.createSpy('FeatureRequestApiService.addNewFeatureRequest').and.returnValue({then:angular.noop}),
+            updateFeatureRequest: jasmine.createSpy('FeatureRequestApiService.updateFeatureRequest').and.returnValue({then:angular.noop})
         };
 
         $http = {
@@ -51,6 +52,10 @@ describe('featureRequestController', () => {
            expect(modal.open).toHaveBeenCalledWith({templateUrl: 'components/feature-request/new-feature-request.html', controllerAs: 'ctrl', scope: {}});
         });
 
+        it('should not set featureRequest in controller', () => {
+            expect(controller.featureRequest).toBeUndefined();
+        });
+
         describe('on closing of modal', () => {
             beforeEach(()=>{
                 controller.closeModal();
@@ -64,15 +69,62 @@ describe('featureRequestController', () => {
         describe('on adding of new request from modal', ()=> {
             beforeEach(()=> {
                 let form = {'$valid': true};
-                let newfeatureRequest = {
+                controller.featureRequest = {
                     title: 'some',
                     target_date: new Date('2017','01','02')
                 };
-                controller.saveNewFeature(form, newfeatureRequest);
+                controller.saveNewFeature(form);
             });
 
             it('should call addNewFeatureRequest for FeatureRequestApiService', ()=> {
                expect(FeatureRequestApiService.addNewFeatureRequest).toHaveBeenCalledWith({ title: 'some', target_date: '2017-02-02' });
+            });
+
+            it('should call dimiss method of modal instance', ()=> {
+                expect(controller.modalInstance.dismiss).toHaveBeenCalled();
+            });
+        });
+    });
+
+    describe('on calling of openModelWithCurrentFeatureRequestValue', () => {
+
+        beforeEach(() => {
+            controller.clientModel = {'Client_C': {'id':1}, 'Client_A': {'id':2}};
+            controller.productModel = {'Policies': {'id': 2}, 'Billing': {'id': 1}};
+            controller.featureRequestList = [{
+              "client_name": "Client_C",
+              "client_priority": 1,
+              "description": "Client wants to be able to send out a survey to evaluate customer satisfaction after issuing a new claim",
+              "id": "9KVaD3BNYKN2Tsm6Sg2XKA",
+              "product_area": "Policies",
+              "target_date": "Fri, 11 Nov 2016 00:00:00 GMT",
+              "title": "Add customer satisfaction survey"
+            }];
+            controller.openModelWithCurrentFeatureRequestValue(0);
+        });
+
+        it('should call open for modal', () => {
+           expect(modal.open).toHaveBeenCalledWith({templateUrl: 'components/feature-request/new-feature-request.html', controllerAs: 'ctrl', scope: {}});
+        });
+
+        it('should set featureRequest in controller', () => {
+            expect(controller.featureRequest.client_id).toBe(1);
+            expect(controller.featureRequest.product_id).toBe(2);
+            expect(controller.featureRequest.title).toBe('Add customer satisfaction survey');
+        });
+
+       describe('on updating new request from modal', ()=> {
+            beforeEach(()=> {
+                let form = {'$valid': true};
+                controller.featureRequest = {
+                    title: 'some',
+                    target_date: new Date('2017','01','02')
+                };
+                controller.saveNewFeature(form, '123');
+            });
+
+            it('should call addNewFeatureRequest for FeatureRequestApiService', ()=> {
+               expect(FeatureRequestApiService.updateFeatureRequest).toHaveBeenCalledWith('123', { title: 'some', target_date: '2017-02-02' });
             });
 
             it('should call dimiss method of modal instance', ()=> {
@@ -112,7 +164,7 @@ describe('featureRequestController', () => {
             });
 
             it('should add data in clientList scope', ()=> {
-                expect(controller.clientList.length).toBe(2);
+                expect(Object.keys(controller.clientModel).length).toBe(2);
             });
         });
 
@@ -122,7 +174,7 @@ describe('featureRequestController', () => {
             });
 
             it('should add data in clientList scope', ()=> {
-                expect(controller.productList.length).toBe(2);
+                expect(Object.keys(controller.productModel).length).toBe(2);
             });
         });
     });

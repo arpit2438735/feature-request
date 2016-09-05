@@ -48,7 +48,7 @@ class Request(db.Model, ModelBase):
         self.product_area = product_area
 
     def to_json(self, feature_request):
-
+        # Todo Need to send client and product id
         return {'id': feature_request.id,
                 'title': feature_request.title,
                 'description': feature_request.description,
@@ -80,7 +80,7 @@ class Request(db.Model, ModelBase):
             feature_request.target_date = datetime.strptime(update_feature_request['target_date'], '%Y-%m-%d').date()
 
         if update_feature_request.get('product_id'):
-            feature_request.target_date = update_feature_request['product_id']
+            feature_request.product_area = update_feature_request['product_id']
 
         return feature_request
 

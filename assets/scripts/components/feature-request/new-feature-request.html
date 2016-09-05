@@ -1,51 +1,51 @@
 <div class="modal-header">
             <h3 class="modal-title" id="modal-title">Request New Feature</h3>
-        </div>
+</div>
         <form novalidate class="feature-request-form" name="form">
             <div class="modal-body" id="modal-body">
 
                 <div class="form-group" ng-class="{'has-error': (form.$submitted || form.title.$touched) && form.title.$error.required,
                                                    'has-success': form.title.$valid }">
                     <label>Title</label>
-                    <input type="text" name="title" class="form-control" ng-model="featureRequest.title" required/>
+                    <input type="text" name="title" class="form-control" ng-model="ctrl.featureRequest.title" required/>
                 </div>
                 <div class="form-group" ng-class="{'has-error': (form.$submitted || form.description.$touched) && form.description.$error.required,
                                                    'has-success': form.description.$valid}">
                     <label>Description</label>
-                    <textarea ng-model="featureRequest.description" class="form-control" name="description"required/>
+                    <textarea ng-model="ctrl.featureRequest.description" class="form-control" name="description"required/>
                 </div>
                 <div class="form-group" ng-class="{'has-error': (form.$submitted || form.client_id.$touched) && form.client_id.$error.required,
                                                    'has-success': form.client_id.$valid}">
                     <label>Client</label>
-                    <select ng-model="featureRequest.client_id" required class="form-control" name="client_id">
+                    <select ng-model="ctrl.featureRequest.client_id" required class="form-control" name="client_id">
                         <option value="">-- Select a client --</option>
-                        <option ng-repeat="client in ctrl.clientList track by client.id" value="{{client.id}}">{{client.name}}</option>
+                        <option ng-repeat="client in ctrl.clientModel track by client.id" value="{{client.id}}">{{client.name}}</option>
                     </select>
                 </div>
                 <div class="form-group" ng-class="{'has-error': (form.$submitted || form.client_priority.$touched) && form.client_priority.$error.required,
                                                    'has-success': form.client_priority.$valid}">
                     <label>Priority</label>
-                    <input type="number" class="form-control" ng-model="featureRequest.client_priority" required name="client_priority">
+                    <input type="number" class="form-control" ng-model="ctrl.featureRequest.client_priority" required name="client_priority">
                 </div>
 
                 <div class="form-group" ng-class="{'has-error': (form.$submitted || form.target_date.$touched) && form.target_date.$error.required,
                                                    'has-success': form.target_date.$valid}">
                     <label>Target Date</label>
-                    <input type="date" class="form-control" ng-model="featureRequest.target_date" required name="target_date">
+                    <input type="date" class="form-control" ng-model="ctrl.featureRequest.target_date" required name="target_date">
                 </div>
 
                 <div class="form-group" ng-class="{'has-error': (form.$submitted || form.product_id.$touched) && form.product_id.$error.required,
                                                    'has-success': form.product_id.$valid}">
                     <label>Product</label>
-                    <select ng-model="featureRequest.product_id" required class="form-control" name="product_id">
+                    <select ng-model="ctrl.featureRequest.product_id" required class="form-control" name="product_id">
                         <option value="">-- Select a client --</option>
-                        <option ng-repeat="product in ctrl.productList track by product.id" value="{{product.id}}">{{product.name}}</option>
+                        <option ng-repeat="product in ctrl.productModel track by product.id" value="{{product.id}}">{{product.name}}</option>
                     </select>
                 </div>
 
             </div>
             <div class="modal-footer">
-                <input class="btn btn-primary" type="submit" ng-click="ctrl.saveNewFeature(form, featureRequest)" value="Save"/>
+                <input class="btn btn-primary" type="submit" ng-click="ctrl.saveNewFeature(form, ctrl.featureRequest.id)" value="Save"/>
                 <button class="btn btn-warning" type="button" ng-click="ctrl.closeModal()">Cancel</button>
             </div>
        </form>
