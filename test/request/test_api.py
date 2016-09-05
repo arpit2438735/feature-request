@@ -67,6 +67,7 @@ class TestRequestAPI(IntegrationTestBase, unittest.TestCase):
 
         response_data = json.loads(response.data)
         self.assertEqual(len(response_data['feature_requests']), 3)
+        self.assertIsNotNone(response_data['feature_requests'][0]['id'])
         self.assertEqual(response_data['feature_requests'][0]['client_name'], expected_data['feature_requests'][0]['client_name'])
         self.assertEqual(response_data['feature_requests'][1]['client_name'], expected_data['feature_requests'][1]['client_name'])
         self.assertEqual(response_data['feature_requests'][0]['client_priority'], expected_data['feature_requests'][0]['client_priority'])
@@ -130,8 +131,6 @@ class TestRequestAPI(IntegrationTestBase, unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response_data["feature_requests"]), 4)
-
-
 
     def test_put_request_for_id_not_present(self):
         FeatureRequestUtils.create_request()

@@ -21,6 +21,16 @@ class FeatureRequestApiService {
             });
     }
 
+    updateFeatureRequest(featureId, updateRequest) {
+        return this.$http.put('/api/feature-request/'+ featureId, updateRequest).then((response) => {
+                this.model.forEach((feature, index) => {
+                    if(feature.id === featureId) {
+                        this.model[index] = response.data.feature_request;
+                    }
+                });
+            });
+    }
+
     get model() {
         return this._model;
     }

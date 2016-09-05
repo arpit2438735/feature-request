@@ -49,7 +49,8 @@ class Request(db.Model, ModelBase):
 
     def to_json(self, feature_request):
 
-        return {'title': feature_request.title,
+        return {'id': feature_request.id,
+                'title': feature_request.title,
                 'description': feature_request.description,
                 'client_name': Client.find_by(id=feature_request.client).name,
                 'client_priority': feature_request.client_priority,
