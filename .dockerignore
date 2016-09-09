@@ -21,3 +21,6 @@ coverage
 
 # Testing yml
 feature_request/config/testing.yml
+
+# Ops Folder
+ops/
