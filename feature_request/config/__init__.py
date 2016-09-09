@@ -24,6 +24,11 @@ def configure(app=None, environment=None):
             test_settings = yaml.load(test_config)
             app.config.update(**test_settings)
 
+        app.config['DB_USER'] = os.environ.get('POSTGRES_USER')
+        app.config['DB_PASS'] = os.environ.get('POSTGRES_PASSWORD')
+        app.config['DB_NAME'] = os.environ.get('POSTGRES_DB')
+        app.config['DB_ADDR'] = os.environ.get('POSTGRES_ADDRESS') + ":" + os.environ.get('POSTGRES_PORT')
+
     if environment != 'testing':
         app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://{DB_USER}:{DB_PASS}@{DB_ADDR}/{DB_NAME}".format(
             DB_USER=app.config['DB_USER'],

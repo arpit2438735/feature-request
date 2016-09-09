@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 from flask_webpack import Webpack
 from config import configure
 from models import db
@@ -21,6 +21,10 @@ def init_app(environment=None):
     @app.route('/')
     def index():
         return render_template('index.html')
+
+    @app.route('/assets/<path:path>')
+    def assets(path):
+        return send_from_directory('build/public', path)
 
     return app
 

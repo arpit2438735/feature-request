@@ -22,7 +22,7 @@ module.exports = {
     },
     output: {
         path: "./feature_request/build/public",
-        publicPath: "http://localhost:2992/assets/",
+        publicPath: "/assets/",
         filename: "[name].js",
         chunkFilename: "[id].chunk"
     },

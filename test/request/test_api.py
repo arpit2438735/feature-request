@@ -38,28 +38,7 @@ class TestRequestAPI(IntegrationTestBase, unittest.TestCase):
         self.assertEqual(len(response_data['feature_requests']), 1)
         self.assertEqual(response_data['feature_requests'][0]['client_name'], expected_data['feature_requests'][0]['client_name'])
 
-    def test_bulk_get_response_for_feature_request_with_order_by_client(self):
-        expected_data = {
-            "feature_requests": [
-                {
-                    "client_name": "ClientA",
-                    "client_priority": 1,
-                    "description": "Client want to have oauth base login",
-                    "product_area": "Policies",
-                    "target_date": "Tue, 30 Aug 2016 16:09:07 GMT",
-                    "title": "Add Login Page"
-                },
-                {
-                    "client_name": "ClientB",
-                    "client_priority": 2,
-                    "description": "Client want to have bootstrap framework in user module",
-                    "product_area": "Billing",
-                    "target_date": "Tue, 30 Aug 2016 16:09:07 GMT",
-                    "title": "Add Bootstrap in User Module"
-                }
-            ]
-        }
-
+    def test_bulk_get_response_for_feature_request(self):
         FeatureRequestUtils.create_request()
         response = self.app.get('/api/feature-request/')
 
@@ -68,12 +47,6 @@ class TestRequestAPI(IntegrationTestBase, unittest.TestCase):
         response_data = json.loads(response.data)
         self.assertEqual(len(response_data['feature_requests']), 3)
         self.assertIsNotNone(response_data['feature_requests'][0]['id'])
-        self.assertEqual(response_data['feature_requests'][0]['client_name'], expected_data['feature_requests'][1]['client_name'])
-        self.assertEqual(response_data['feature_requests'][1]['client_name'], expected_data['feature_requests'][0]['client_name'])
-        self.assertEqual(response_data['feature_requests'][0]['client_priority'], expected_data['feature_requests'][1]['client_priority'])
-        self.assertEqual(response_data['feature_requests'][1]['client_priority'], expected_data['feature_requests'][0]['client_priority'])
-        self.assertEqual(response_data['feature_requests'][0]['product_area'], expected_data['feature_requests'][1]['product_area'])
-        self.assertEqual(response_data['feature_requests'][1]['product_area'], expected_data['feature_requests'][0]['product_area'])
 
     def test_post_for_feature_request(self):
         FeatureRequestUtils.create_request()
