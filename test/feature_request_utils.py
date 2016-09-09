@@ -1,5 +1,3 @@
-import datetime
-
 from feature_request.request.model import Client, Product, Request
 
 
