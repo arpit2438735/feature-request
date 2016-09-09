@@ -1,0 +1,23 @@
+.idea/
+virtualenv/
+
+*.egg-info
+*.egg
+
+build/
+dist/
+.eggs
+
+# Python cache
+__pycache__/
+*.pyc
+.eggs/
+tmp/
+node_modules/
+coverage
+
+.git/
+.gitignore
+
+# Testing yml
+feature_request/config/testing.yml

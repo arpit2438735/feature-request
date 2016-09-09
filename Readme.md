@@ -6,6 +6,7 @@
 - Flask
 - SQLAlchemy
 - AngularJs
+- Docker Machine(Deployment)
 
 ## Installation
 

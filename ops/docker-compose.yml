@@ -1,0 +1,45 @@
+version: '2'
+
+services:
+    app:
+      restart: always
+      expose:
+        - "5000"
+      build:
+        context: ../
+        dockerfile: ops/Dockerfile
+      environment:
+        - POSTGRES_PASSWORD=feature_request
+        - POSTGRES_USER=feature_request
+        - POSTGRES_DB=feature_request
+        - POSTGRES_ADDRESS=postgres
+        - POSTGRES_PORT=5432
+      command: bash -c "gunicorn wsgi --timeout 15 --keep-alive 5"
+
+    nginx:
+      restart: always
+      build: ./nginx/
+      ports:
+        - "80:80"
+      links:
+        - "postgres:postgres"
+        - "app:app"
+
+    data:
+      restart: always
+      image: postgres:latest
+      volumes:
+        - /var/lib/postgresql
+      command: "true"
+
+    postgres:
+      restart: always
+      image: postgres:latest
+      environment:
+         - POSTGRES_PASSWORD=feature_request
+         - POSTGRES_USER=feature_request
+         - POSTGRES_DB=feature_request
+      volumes_from:
+        - data
+      ports:
+        - "5432:5432"
