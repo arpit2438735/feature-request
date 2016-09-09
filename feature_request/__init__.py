@@ -34,5 +34,6 @@ def register_blueprints(app):
     app.register_blueprint(client, url_prefix='/api/client')
     app.register_blueprint(product, url_prefix='/api/product')
 
-def run_app(app):
-    app.run()
+
+def run_app(app, host=None, port=None):
+    app.run(host=host, port=port)
