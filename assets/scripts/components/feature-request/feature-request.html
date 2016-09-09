@@ -20,7 +20,7 @@
         <th>Actions</th>
     </thead>
     <tbody>
-        <tr ng-repeat="feature in ctrl.featureRequestList | orderBy: 'client_name' track by $index">
+        <tr ng-repeat="feature in ctrl.featureRequestList track by $index">
             <td> {{ feature.title}} </td>
             <td> {{ feature.description}} </td>
             <td> {{ feature.client_name}}</td>
